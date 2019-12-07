@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.API", "Payment.API\Payment.API.csproj", "{4EE4298F-3A9A-43DC-9474-EFBB16F7437D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payment.Gateway", "Payment.API\Payment.Gateway.csproj", "{4EE4298F-3A9A-43DC-9474-EFBB16F7437D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.API", "Payments.API\Payments.API.csproj", "{8CB81B49-24A1-46C7-AE77-21E382C4D3CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banking.Simulator", "Banking.Simulator\Banking.Simulator.csproj", "{53AB004D-3153-4DD0-BA7C-F5A908B8413B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{4EE4298F-3A9A-43DC-9474-EFBB16F7437D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EE4298F-3A9A-43DC-9474-EFBB16F7437D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EE4298F-3A9A-43DC-9474-EFBB16F7437D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CB81B49-24A1-46C7-AE77-21E382C4D3CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CB81B49-24A1-46C7-AE77-21E382C4D3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CB81B49-24A1-46C7-AE77-21E382C4D3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CB81B49-24A1-46C7-AE77-21E382C4D3CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53AB004D-3153-4DD0-BA7C-F5A908B8413B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53AB004D-3153-4DD0-BA7C-F5A908B8413B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53AB004D-3153-4DD0-BA7C-F5A908B8413B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53AB004D-3153-4DD0-BA7C-F5A908B8413B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

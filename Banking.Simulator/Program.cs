@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Payment.Gateway
+namespace Banking.Simulator
 {
     public class Program
     {
@@ -19,7 +19,6 @@ namespace Payment.Gateway
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((host, config) => { config.AddJsonFile("ocelot.json"); })
                 .UseStartup<Startup>();
     }
 }
