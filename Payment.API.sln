@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payment.Gateway", "Payment.Gateway\Payment.Gateway.csproj", "{4EE4298F-3A9A-43DC-9474-EFBB16F7437D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.API", "Payments.API\Payments.API.csproj", "{8CB81B49-24A1-46C7-AE77-21E382C4D3CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payments.API", "Payments.API\Payments.API.csproj", "{8CB81B49-24A1-46C7-AE77-21E382C4D3CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Banking.Simulator", "Banking.Simulator\Banking.Simulator.csproj", "{53AB004D-3153-4DD0-BA7C-F5A908B8413B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Banking.Simulator", "Banking.Simulator\Banking.Simulator.csproj", "{53AB004D-3153-4DD0-BA7C-F5A908B8413B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6F7E9817-9C6B-45A6-AC03-7715090506B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{53AB004D-3153-4DD0-BA7C-F5A908B8413B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53AB004D-3153-4DD0-BA7C-F5A908B8413B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53AB004D-3153-4DD0-BA7C-F5A908B8413B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F7E9817-9C6B-45A6-AC03-7715090506B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F7E9817-9C6B-45A6-AC03-7715090506B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F7E9817-9C6B-45A6-AC03-7715090506B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F7E9817-9C6B-45A6-AC03-7715090506B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

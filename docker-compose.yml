@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+
+  payments.api:
+    image: ${DOCKER_REGISTRY-}paymentsapi
+    build:
+      context: .
+      dockerfile: Payments.API/Dockerfile
+    ports:
+      - 5001:5001
+
+  payment.gateway:
+    image: ${DOCKER_REGISTRY-}paymentgateway
+    build:
+      context: .
+      dockerfile: Payment.Gateway/Dockerfile
+    ports:
+      - 5000:5000
+
+
+  banking.simulator:
+    image: ${DOCKER_REGISTRY-}bankingsimulator
+    build:
+      context: .
+      dockerfile: Banking.Simulator/Dockerfile
+    ports:
+      - 5002:5002
+

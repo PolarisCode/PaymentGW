@@ -1,0 +1,26 @@
+services:
+  banking.simulator:
+    build:
+      context: C:\Checkout.com\Payment.API
+      dockerfile: Banking.Simulator/Dockerfile
+    image: bankingsimulator
+    ports:
+    - published: 5002
+      target: 5002
+  payment.gateway:
+    build:
+      context: C:\Checkout.com\Payment.API
+      dockerfile: Payment.Gateway/Dockerfile
+    image: paymentgateway
+    ports:
+    - published: 5000
+      target: 5000
+  payments.api:
+    build:
+      context: C:\Checkout.com\Payment.API
+      dockerfile: Payments.API/Dockerfile
+    image: paymentsapi
+    ports:
+    - published: 5001
+      target: 80
+version: '3.4'

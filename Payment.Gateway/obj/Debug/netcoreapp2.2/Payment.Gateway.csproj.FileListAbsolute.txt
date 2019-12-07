@@ -17,7 +17,6 @@ C:\Checkout.com\Payment.API\Payment.Gateway\bin\Debug\netcoreapp2.2\Payment.Gate
 C:\Checkout.com\Payment.API\Payment.Gateway\bin\Debug\netcoreapp2.2\Payment.Gateway.runtimeconfig.dev.json
 C:\Checkout.com\Payment.API\Payment.Gateway\bin\Debug\netcoreapp2.2\Payment.Gateway.dll
 C:\Checkout.com\Payment.API\Payment.Gateway\bin\Debug\netcoreapp2.2\Payment.Gateway.pdb
-C:\Checkout.com\Payment.API\Payment.Gateway\obj\Debug\netcoreapp2.2\Payment.Gateway.csprojAssemblyReference.cache
 C:\Checkout.com\Payment.API\Payment.Gateway\obj\Debug\netcoreapp2.2\Payment.Gateway.csproj.CoreCompileInputs.cache
 C:\Checkout.com\Payment.API\Payment.Gateway\obj\Debug\netcoreapp2.2\Payment.Gateway.RazorAssemblyInfo.cache
 C:\Checkout.com\Payment.API\Payment.Gateway\obj\Debug\netcoreapp2.2\Payment.Gateway.RazorAssemblyInfo.cs

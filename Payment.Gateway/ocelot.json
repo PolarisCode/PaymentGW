@@ -1,18 +1,18 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/payments/{all}",
+      "DownstreamPathTemplate": "/api/values/",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "Payments.API",
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/api/payments/{all}"
+      "UpstreamPathTemplate": "/api/payments/"
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:5000"
+    "BaseUrl": "http://+:5000"
   }
 }

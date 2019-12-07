@@ -1,14 +1,13 @@
-C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.csproj.CoreCompileInputs.cache
-C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.AssemblyInfoInputs.cache
-C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.AssemblyInfo.cs
 C:\Checkout.com\Payment.API\Banking.Simulator\bin\Debug\netcoreapp2.2\Banking.Simulator.deps.json
 C:\Checkout.com\Payment.API\Banking.Simulator\bin\Debug\netcoreapp2.2\Banking.Simulator.runtimeconfig.json
 C:\Checkout.com\Payment.API\Banking.Simulator\bin\Debug\netcoreapp2.2\Banking.Simulator.runtimeconfig.dev.json
 C:\Checkout.com\Payment.API\Banking.Simulator\bin\Debug\netcoreapp2.2\Banking.Simulator.dll
 C:\Checkout.com\Payment.API\Banking.Simulator\bin\Debug\netcoreapp2.2\Banking.Simulator.pdb
-C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.csprojAssemblyReference.cache
+C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.csproj.CoreCompileInputs.cache
 C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.RazorAssemblyInfo.cache
 C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.RazorAssemblyInfo.cs
+C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.AssemblyInfoInputs.cache
+C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.AssemblyInfo.cs
 C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.RazorTargetAssemblyInfo.cache
 C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.dll
 C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.pdb
