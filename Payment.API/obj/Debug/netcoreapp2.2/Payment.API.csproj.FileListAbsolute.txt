@@ -1,0 +1,13 @@
+C:\Checkout.com\Payment.API\Payment.API\obj\Debug\netcoreapp2.2\Payment.API.csproj.CoreCompileInputs.cache
+C:\Checkout.com\Payment.API\Payment.API\obj\Debug\netcoreapp2.2\Payment.API.AssemblyInfoInputs.cache
+C:\Checkout.com\Payment.API\Payment.API\obj\Debug\netcoreapp2.2\Payment.API.AssemblyInfo.cs
+C:\Checkout.com\Payment.API\Payment.API\bin\Debug\netcoreapp2.2\Payment.API.deps.json
+C:\Checkout.com\Payment.API\Payment.API\bin\Debug\netcoreapp2.2\Payment.API.runtimeconfig.json
+C:\Checkout.com\Payment.API\Payment.API\bin\Debug\netcoreapp2.2\Payment.API.runtimeconfig.dev.json
+C:\Checkout.com\Payment.API\Payment.API\bin\Debug\netcoreapp2.2\Payment.API.dll
+C:\Checkout.com\Payment.API\Payment.API\bin\Debug\netcoreapp2.2\Payment.API.pdb
+C:\Checkout.com\Payment.API\Payment.API\obj\Debug\netcoreapp2.2\Payment.API.RazorAssemblyInfo.cache
+C:\Checkout.com\Payment.API\Payment.API\obj\Debug\netcoreapp2.2\Payment.API.RazorAssemblyInfo.cs
+C:\Checkout.com\Payment.API\Payment.API\obj\Debug\netcoreapp2.2\Payment.API.RazorTargetAssemblyInfo.cache
+C:\Checkout.com\Payment.API\Payment.API\obj\Debug\netcoreapp2.2\Payment.API.dll
+C:\Checkout.com\Payment.API\Payment.API\obj\Debug\netcoreapp2.2\Payment.API.pdb
