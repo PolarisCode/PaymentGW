@@ -12370,11 +12370,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Checkout.com\\Payment.API\\Payment.API\\Payment.Gateway.csproj",
+      "projectUniqueName": "C:\\Checkout.com\\Payment.API\\Payment.Gateway\\Payment.Gateway.csproj",
       "projectName": "Payment.Gateway",
-      "projectPath": "C:\\Checkout.com\\Payment.API\\Payment.API\\Payment.Gateway.csproj",
+      "projectPath": "C:\\Checkout.com\\Payment.API\\Payment.Gateway\\Payment.Gateway.csproj",
       "packagesPath": "C:\\Users\\imran\\.nuget\\packages\\",
-      "outputPath": "C:\\Checkout.com\\Payment.API\\Payment.API\\obj\\",
+      "outputPath": "C:\\Checkout.com\\Payment.API\\Payment.Gateway\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

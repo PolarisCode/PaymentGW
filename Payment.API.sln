@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payment.Gateway", "Payment.API\Payment.Gateway.csproj", "{4EE4298F-3A9A-43DC-9474-EFBB16F7437D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payment.Gateway", "Payment.Gateway\Payment.Gateway.csproj", "{4EE4298F-3A9A-43DC-9474-EFBB16F7437D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payments.API", "Payments.API\Payments.API.csproj", "{8CB81B49-24A1-46C7-AE77-21E382C4D3CA}"
 EndProject
