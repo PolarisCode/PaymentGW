@@ -1,9 +1,0 @@
-C:\Checkout.com\Payment.API\bin\Debug\Banking.Simulator.dll
-C:\Checkout.com\Payment.API\bin\Debug\Payment.Gateway.dll
-C:\Checkout.com\Payment.API\bin\Debug\Payments.API.dll
-C:\Checkout.com\Payment.API\bin\Debug\Payment.Gateway.pdb
-C:\Checkout.com\Payment.API\bin\Debug\Payments.API.pdb
-C:\Checkout.com\Payment.API\bin\Debug\Banking.Simulator.pdb
-C:\Checkout.com\Payment.API\obj\Debug\docker-compose.dcprojAssemblyReference.cache
-C:\Checkout.com\Payment.API\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
-C:\Checkout.com\Payment.API\obj\Debug\docker-compose.dcproj.CopyComplete
