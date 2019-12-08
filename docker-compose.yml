@@ -9,6 +9,8 @@ services:
       dockerfile: Payments.API/Dockerfile
     ports:
       - 5001:5001
+    depends_on:
+      - sql.server
 
   payment.gateway:
     image: ${DOCKER_REGISTRY-}paymentgateway
@@ -26,4 +28,13 @@ services:
       dockerfile: Banking.Simulator/Dockerfile
     ports:
       - 5002:5002
+
+  sql.server:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      - SA_PASSWORD=Pass@word
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"   
 

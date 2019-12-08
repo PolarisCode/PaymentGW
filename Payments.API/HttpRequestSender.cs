@@ -14,7 +14,6 @@ namespace Payments.API
 {
     public class HttpRequestSender<T> : IRequestSender<T> where T : new()
     {
-
         public async Task<T> SendAsync(string url, string requestUri, string jsonString)
         {
             HttpClient client = new HttpClient { BaseAddress = new Uri(url) };
@@ -40,6 +39,5 @@ namespace Payments.API
                 throw new HttpSenderException(response.StatusCode.ToString(), response.ReasonPhrase);
             }
         }
-
     }
 }

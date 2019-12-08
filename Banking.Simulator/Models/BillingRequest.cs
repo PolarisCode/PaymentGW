@@ -13,7 +13,7 @@ namespace Banking.Simulator.Models
         public decimal Amount { get; set; }
         public string CurrencyCode { get; set; }
         public int ExpiryMonth { get; set; }
-        public int ExpiryDay { get; set; }
+        public int ExpirationYear { get; set; }
         public int Cvv { get; set; }
     }
 }

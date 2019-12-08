@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Payments.API.Persistence;
 
 namespace Payments.API
 {
@@ -26,6 +28,8 @@ namespace Payments.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddDbContext<PaymentDBContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:PaymentDB"]));
+
             services.RegisterAll();
         }
 
@@ -37,7 +41,28 @@ namespace Payments.API
                 app.UseDeveloperExceptionPage();
             }
 
+            GenerateDB(app);
+
             app.UseMvc();
+        }
+
+        private void GenerateDB(IApplicationBuilder app)
+        {
+            try
+            {
+                using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    using (var context = serviceScope.ServiceProvider.GetService<PaymentDBContext>())
+                    {
+                        context.Database.EnsureCreated();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //TODO: handle 
+                throw;
+            }
         }
     }
 }
