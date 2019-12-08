@@ -37,5 +37,13 @@ namespace Payments.API.Controllers
                 return StatusCode(500, new ErrorResponse() { ErrorCode = "500", ErrorMessage = exception.Message });
             }
         }
+
+        [HttpGet]
+        [Produces("application/json")]
+        [Route("{externalId}")]
+        public async Task<ActionResult> RetrievePaymentInformation(string externalId)
+        {
+            return null;
+        }
     }
 }

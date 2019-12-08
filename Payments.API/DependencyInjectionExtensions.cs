@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Payments.API.Adapters;
+using Payments.API.Configuration;
 using Payments.API.Contracts;
 using Payments.API.Models;
 using Payments.API.Persistence;
@@ -26,6 +27,8 @@ namespace Payments.API
             services.AddScoped<IRequestSender<PaymentResponse>, HttpRequestSender<PaymentResponse>>();
 
             services.AddScoped<IPaymentRepository>(x => new PaymentRepository(configuration["ConnectionStrings:PaymentDB"]));
+
+            services.AddSingleton<IApplicationConfiguration>(x => new ApplicationConfiguration(configuration));
 
             return services;
         }

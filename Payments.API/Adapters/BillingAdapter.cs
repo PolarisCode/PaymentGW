@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Payments.API.Configuration;
 using Payments.API.Contracts;
 using Payments.API.Models;
 
@@ -11,15 +12,12 @@ namespace Payments.API.Adapters
     public class BillingAdapter : IBillingAdapter
     {
         private readonly IRequestSender<PaymentResponse> _requestSender;
+        private readonly IApplicationConfiguration _configuration;      
 
-        private string url = "http://Banking.Simulator:5002/api/billing";
-        private string uriParameters = "";
-        
-
-
-        public BillingAdapter(IRequestSender<PaymentResponse> requestSender)
+        public BillingAdapter(IRequestSender<PaymentResponse> requestSender, IApplicationConfiguration configuration)
         {
             _requestSender = requestSender;
+            _configuration = configuration;
         }
 
 
@@ -27,7 +25,7 @@ namespace Payments.API.Adapters
         {
             string jsonString = JsonConvert.SerializeObject(request);
 
-            return await _requestSender.SendAsync(url, uriParameters, jsonString);
+            return await _requestSender.SendAsync(_configuration.BillingUrl, "", jsonString);
         }
     }
 }
