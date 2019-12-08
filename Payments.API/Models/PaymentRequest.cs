@@ -7,7 +7,7 @@ namespace Payments.API.Models
 {
     public class PaymentRequest
     {
-        public long ExternalID { get; set; }
+        public string ExternalID { get; set; }
         public string CardNumber { get; set; }
         public decimal Amount { get; set; }
         public string CurrencyCode { get; set; }

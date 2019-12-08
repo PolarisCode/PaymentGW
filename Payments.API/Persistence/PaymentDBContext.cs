@@ -14,6 +14,6 @@ namespace Payments.API.Persistence
 
         public PaymentDBContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<PaymentRecord> Payments { get; set; } 
+        public DbSet<PaymentRecord> Payments { get; set; }
     }
 }
