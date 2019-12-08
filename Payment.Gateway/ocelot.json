@@ -1,7 +1,7 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/values/",
+      "DownstreamPathTemplate": "/api/Payments/",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {

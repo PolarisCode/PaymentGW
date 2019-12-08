@@ -11,3 +11,4 @@ C:\Checkout.com\Payment.API\Payments.API\obj\Debug\netcoreapp2.2\Payments.API.As
 C:\Checkout.com\Payment.API\Payments.API\obj\Debug\netcoreapp2.2\Payments.API.RazorTargetAssemblyInfo.cache
 C:\Checkout.com\Payment.API\Payments.API\obj\Debug\netcoreapp2.2\Payments.API.dll
 C:\Checkout.com\Payment.API\Payments.API\obj\Debug\netcoreapp2.2\Payments.API.pdb
+C:\Checkout.com\Payment.API\Payments.API\obj\Debug\netcoreapp2.2\Payments.API.csprojAssemblyReference.cache

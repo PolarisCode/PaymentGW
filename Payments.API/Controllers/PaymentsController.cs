@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Payments.API.Contracts;
+using Payments.API.Models;
 
 namespace Payments.API.Controllers
 {
@@ -11,10 +13,19 @@ namespace Payments.API.Controllers
     [ApiController]
     public class PaymentsController : ControllerBase
     {
-        [HttpGet]
-        public string Get()
+        private IPaymentProcessor _paymentProcessor;
+
+        public PaymentsController(IPaymentProcessor processor)
         {
-            return "Works!";
+            _paymentProcessor = processor;
+        }
+
+        [HttpPost]
+        [Produces("application/json")]
+        public Task<ActionResult> Process([FromBody]PaymentRequest request)
+        {
+            _paymentProcessor.Process(request);
+            return Ok(null);
         }
     }
 }

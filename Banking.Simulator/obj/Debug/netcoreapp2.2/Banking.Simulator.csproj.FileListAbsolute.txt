@@ -11,3 +11,4 @@ C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Si
 C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.RazorTargetAssemblyInfo.cache
 C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.dll
 C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.pdb
+C:\Checkout.com\Payment.API\Banking.Simulator\obj\Debug\netcoreapp2.2\Banking.Simulator.csprojAssemblyReference.cache
