@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Payments.API.Contracts;
+using Payments.API.Exceptions;
 using Payments.API.Models;
 
 namespace Payments.API.Processors
@@ -18,24 +19,16 @@ namespace Payments.API.Processors
             _paymentValidator = paymentValidator;
         }
 
-        public PaymentResponse Process(PaymentRequest request)
+        public async Task<PaymentResponse> Process(PaymentRequest request)
         {
-            try
+            if (await _paymentValidator.Validate(request))
             {
-                if (_paymentValidator.Validate(request))
-                {
-
-                }  
+                return await _billingAdapter.SendRequest(request);
             }
-            catch (Exception)
+            else
             {
-
-                throw;
+                throw new ApiException("Validation failed");
             }
-
-            //Validation of the request
-
-            //sendin request to billing adapter
         }
     }
 }

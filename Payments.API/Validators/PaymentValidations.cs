@@ -9,9 +9,12 @@ namespace Payments.API.Validators
 {
     public class PaymentValidations : IPaymentValidator
     {
-        public bool Validate(PaymentRequest request)
+        public async Task<bool> Validate(PaymentRequest request)
         {
-            throw new NotImplementedException();
+            await new CurrencyValidator().IsSatisfied(request);
+            await new CardNumberValidator().IsSatisfied(request);
+
+            return true;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -22,9 +23,17 @@ namespace Payments.API.Controllers
 
         [HttpPost]
         [Produces("application/json")]
-        public Task<ActionResult> Process([FromBody]PaymentRequest request)
+        public async Task<ActionResult> Process([FromBody]PaymentRequest request)
         {
-            _paymentProcessor.Process(request);
+            try
+            {
+               await _paymentProcessor.Process(request);
+            }
+            catch (ValidationException exception)
+            {
+                return StatusCode(500, new ErrorResponse() { ErrorCode = "500", ErrorMessage = exception.Message });
+            }
+
             return Ok(null);
         }
     }

@@ -1,9 +1,10 @@
-﻿using Payments.API.Models;
+﻿using System.Threading.Tasks;
+using Payments.API.Models;
 
 namespace Payments.API.Contracts
 {
     public interface IPaymentProcessor
     {
-        PaymentResponse Process(PaymentRequest request);
+        Task<PaymentResponse> Process(PaymentRequest request);
     }
 }
