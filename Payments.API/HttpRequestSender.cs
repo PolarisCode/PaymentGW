@@ -14,16 +14,15 @@ namespace Payments.API
 {
     public class HttpRequestSender<T> : IRequestSender<T> where T : new()
     {
-        public async Task<T> SendAsync(string url, string requestUri, string jsonString)
+        public async Task<T> SendAsync(string url, string queryString, string jsonPayload)
         {
             HttpClient client = new HttpClient { BaseAddress = new Uri(url) };
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            //HttpResponseMessage response = await client.PostAsJsonAsync(requestUri, jsonString);
-            HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+            HttpContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await client.PostAsync(requestUri, content);
+            HttpResponseMessage response = await client.PostAsync(queryString, content);
 
             if (response.IsSuccessStatusCode)
             {

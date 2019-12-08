@@ -15,6 +15,16 @@ namespace Payments.API.Persistence
             _dbContextOptions = new DbContextOptionsBuilder().UseSqlServer(connectionString).Options;
         }
 
+        public bool IsExternalIDExist(string externalID)
+        {
+            using (PaymentDBContext context = new PaymentDBContext(_dbContextOptions))
+            {
+                var result = context.Payments.Any(x => x.ExternalID == externalID);
+
+                return result;
+            }
+        }
+
         public async Task SavePaymentRecordAsync(PaymentRecord record)
         {
             using (PaymentDBContext context = new PaymentDBContext(_dbContextOptions))
@@ -24,5 +34,7 @@ namespace Payments.API.Persistence
                 await context.SaveChangesAsync();
             }
         }
+
+
     }
 }

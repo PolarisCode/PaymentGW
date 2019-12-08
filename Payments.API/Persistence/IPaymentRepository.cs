@@ -8,5 +8,7 @@ namespace Payments.API.Persistence
     public interface IPaymentRepository
     {
         Task SavePaymentRecordAsync(PaymentRecord record);
+
+        bool IsExternalIDExist(string externalID);
     }
 }
