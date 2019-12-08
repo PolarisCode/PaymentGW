@@ -14,14 +14,14 @@ namespace Banking.Simulator.Controllers
     {
         [HttpPost]
         [Produces("application/json")]
-        public BillingResponse Post([FromBody] BillingRequest value)
+        public ActionResult Post([FromBody] BillingRequest value)
         {
-            return new BillingResponse()
+            return Ok(new BillingResponse()
             {
                 BillingTransactionID = DateTime.Now.Ticks.ToString(),
                 Success = true,
                 ErrorDescription = ""
-            };
+            });
         }
 
     }

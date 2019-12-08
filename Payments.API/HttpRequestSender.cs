@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography.Xml;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Payments.API.Contracts;
@@ -11,10 +12,8 @@ using Payments.API.Exceptions;
 
 namespace Payments.API
 {
-    public class HttpRequestSender<T>: IRequestSender<T> where T : new()
+    public class HttpRequestSender<T> : IRequestSender<T> where T : new()
     {
-        //private const string URL = "https://sub.domain.com/objects.json";
-        //private string urlParameters = "?api_key=123";
 
         public async Task<T> SendAsync(string url, string requestUri, string jsonString)
         {
@@ -22,7 +21,10 @@ namespace Payments.API
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = await client.PostAsJsonAsync(requestUri, jsonString);
+            //HttpResponseMessage response = await client.PostAsJsonAsync(requestUri, jsonString);
+            HttpContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(requestUri, content);
 
             if (response.IsSuccessStatusCode)
             {

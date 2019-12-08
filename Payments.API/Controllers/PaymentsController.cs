@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Payments.API.Contracts;
+using Payments.API.Exceptions;
 using Payments.API.Models;
 
 namespace Payments.API.Controllers
@@ -27,14 +28,14 @@ namespace Payments.API.Controllers
         {
             try
             {
-               await _paymentProcessor.Process(request);
+                PaymentResponse response = await _paymentProcessor.Process(request);
+                
+                return Ok(response);
             }
-            catch (ValidationException exception)
+            catch (ApiException exception)
             {
                 return StatusCode(500, new ErrorResponse() { ErrorCode = "500", ErrorMessage = exception.Message });
             }
-
-            return Ok(null);
         }
     }
 }

@@ -12,8 +12,8 @@ namespace Payments.API.Adapters
     {
         private readonly IRequestSender<PaymentResponse> _requestSender;
 
-        private string url = "http://localhost:5002";
-        private string uriParameters = "/process";
+        private string url = "http://Banking.Simulator:5002/api/billing";
+        private string uriParameters = "";
         
 
 
