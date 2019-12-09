@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Payments.API.Contracts;
 using Payments.API.Exceptions;
 using Payments.API.Models;
@@ -16,10 +18,13 @@ namespace Payments.API.Controllers
     public class PaymentsController : ControllerBase
     {
         private IPaymentProcessor _paymentProcessor;
+        private ILogger _logger;
 
-        public PaymentsController(IPaymentProcessor processor)
+        public PaymentsController(IPaymentProcessor processor, ILoggerFactory loggerFactory)
         {
             _paymentProcessor = processor;
+            _logger = loggerFactory.CreateLogger("PaymentsController");
+           
         }
 
         [HttpPost]
@@ -28,6 +33,8 @@ namespace Payments.API.Controllers
         {
             try
             {
+                _logger.LogInformation(request.CardNumber);
+
                 PaymentResponse response = await _paymentProcessor.ProcessAsync(request);
 
                 return Ok(response);

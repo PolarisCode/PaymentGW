@@ -9,6 +9,9 @@ services:
       dockerfile: Payments.API/Dockerfile
     ports:
       - 5001:5001
+    volumes:
+      - //c/PaymentGW/Logs:/Logs
+      - //c/PaymentGW/Logs:/app/Logs
     depends_on:
       - sql.server
 

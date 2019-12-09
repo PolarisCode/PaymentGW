@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Payments.API.Persistence;
 
+
 namespace Payments.API
 {
     public class Startup
@@ -34,8 +35,12 @@ namespace Payments.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddLog4Net();
+
+            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
