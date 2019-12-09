@@ -7,7 +7,9 @@ namespace Payments.API.Exceptions.ValidationExceptions
 {
     public class DuplicateRequestException : ApiException
     {
-        public DuplicateRequestException(string message) : base(message)
+        private const string _errorCode = "500.003";
+
+        public DuplicateRequestException(string message) : base(message, _errorCode)
         {
         }
     }

@@ -7,7 +7,9 @@ namespace Payments.API.Exceptions
 {
     public class CurrencyNotFoundException : ApiException
     {
-        public CurrencyNotFoundException(string message) : base(message)
+        private const string _errorCode = "500.002";
+
+        public CurrencyNotFoundException(string message) : base(message, _errorCode)
         { }
     }
 }

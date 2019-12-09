@@ -7,7 +7,9 @@ namespace Payments.API.Exceptions
 {
     public class CardNumberInvalidException : ApiException
     {
-        public CardNumberInvalidException(string message) : base(message)
+        private const string _errorCode = "500.001";
+
+        public CardNumberInvalidException(string message) : base(message, _errorCode)
         {
         }
     }

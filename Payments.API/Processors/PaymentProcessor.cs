@@ -48,23 +48,28 @@ namespace Payments.API.Processors
             }
             else
             {
-                throw new ApiException("Validation failed");
+                throw new ApiException("Validation failed", "500");
             }
         }
 
         public async Task<PaymentDetails> ReceivePaymentAsync(string externalID)
         {
+            PaymentDetails paymentDetails = null;
+
             PaymentRecord dbRecord = await _repository.GetPaymentRecordAsync(externalID);
 
-            var paymentDetails = new PaymentDetails()
+            if (dbRecord != null)
             {
-                BillingTransactionID = dbRecord.BillingID,
-                Success = dbRecord.BillingSuccess,
-                ErrorDescription = dbRecord.ErrorDescription,
-                ExpirtyYear = dbRecord.CardExpirationYear.ToString(),
-                ExpiryMonth = dbRecord.CardExpirationMonth.ToString(),
-                MaskedCardNumber = MaskCreditCardNumber(dbRecord.CardNumber)
-            };
+                paymentDetails = new PaymentDetails()
+                {
+                    BillingTransactionID = dbRecord.BillingID,
+                    Success = dbRecord.BillingSuccess,
+                    ErrorDescription = dbRecord.ErrorDescription,
+                    ExpirtyYear = dbRecord.CardExpirationYear.ToString(),
+                    ExpiryMonth = dbRecord.CardExpirationMonth.ToString(),
+                    MaskedCardNumber = MaskCreditCardNumber(dbRecord.CardNumber)
+                };
+            }
 
             return paymentDetails;
         }

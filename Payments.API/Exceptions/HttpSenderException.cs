@@ -7,12 +7,12 @@ namespace Payments.API.Exceptions
 {
     public class HttpSenderException : ApiException
     {
-        public HttpSenderException(string statusCode, string message) : base(message)
-        {
-            this.StatusCode = statusCode;
-        }
+        private const string _errorCode = "500.004";
 
-        public string StatusCode { get; set; }
+        public HttpSenderException(string statusCode, string message) : base(message, _errorCode)
+        {
+           
+        }
     }
 }
 

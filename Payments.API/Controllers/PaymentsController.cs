@@ -29,12 +29,12 @@ namespace Payments.API.Controllers
             try
             {
                 PaymentResponse response = await _paymentProcessor.ProcessAsync(request);
-                
+
                 return Ok(response);
             }
             catch (ApiException exception)
             {
-                return StatusCode(500, new ErrorResponse() { ErrorCode = "500", ErrorMessage = exception.Message });
+                return StatusCode(500, new ErrorResponse() { ErrorCode = exception.ErrorCode, ErrorMessage = exception.Message });
             }
         }
 
@@ -45,7 +45,12 @@ namespace Payments.API.Controllers
         {
             PaymentDetails details = await _paymentProcessor.ReceivePaymentAsync(externalId);
 
-            return Ok(details);
+            if (details != null)
+            {
+                return Ok(details);
+            }
+
+            return StatusCode(404, new ErrorResponse() { ErrorCode = "404", ErrorMessage = $"ExternalID '{externalId}' was not processed before." });
         }
     }
 }
