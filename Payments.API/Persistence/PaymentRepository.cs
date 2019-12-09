@@ -15,11 +15,21 @@ namespace Payments.API.Persistence
             _dbContextOptions = new DbContextOptionsBuilder().UseSqlServer(connectionString).Options;
         }
 
-        public bool IsExternalIDExist(string externalID)
+        public async Task<PaymentRecord> GetPaymentRecordAsync(string externalID)
         {
             using (PaymentDBContext context = new PaymentDBContext(_dbContextOptions))
             {
-                var result = context.Payments.Any(x => x.ExternalID == externalID);
+                var result = await context.Payments.FirstOrDefaultAsync(x => x.ExternalID == externalID);
+
+                return result;
+            }
+        }
+
+        public async Task<bool> IsExternalIDExistAsync(string externalID)
+        {
+            using (PaymentDBContext context = new PaymentDBContext(_dbContextOptions))
+            {
+                var result = await context.Payments.AnyAsync(x => x.ExternalID == externalID);
 
                 return result;
             }

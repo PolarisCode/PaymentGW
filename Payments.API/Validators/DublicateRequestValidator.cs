@@ -18,14 +18,14 @@ namespace Payments.API.Validators
             _repository = repository;
         }
 
-        public Task<bool> IsSatisfied(PaymentRequest request)
+        public async Task<bool> IsSatisfied(PaymentRequest request)
         {
-            if (_repository.IsExternalIDExist(request.ExternalID))
+            if (await _repository.IsExternalIDExistAsync(request.ExternalID))
             {
                 throw new DuplicateRequestException($"Message with ExternalID '{request.ExternalID}' already was processed");
             }
 
-            return Task.FromResult(true);
+            return true;
         }
     }
 }

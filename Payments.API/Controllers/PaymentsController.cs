@@ -28,7 +28,7 @@ namespace Payments.API.Controllers
         {
             try
             {
-                PaymentResponse response = await _paymentProcessor.Process(request);
+                PaymentResponse response = await _paymentProcessor.ProcessAsync(request);
                 
                 return Ok(response);
             }
@@ -43,7 +43,9 @@ namespace Payments.API.Controllers
         [Route("{externalId}")]
         public async Task<ActionResult> RetrievePaymentInformation(string externalId)
         {
-            return null;
+            PaymentDetails details = await _paymentProcessor.ReceivePaymentAsync(externalId);
+
+            return Ok(details);
         }
     }
 }

@@ -9,6 +9,8 @@ namespace Payments.API.Persistence
     {
         Task SavePaymentRecordAsync(PaymentRecord record);
 
-        bool IsExternalIDExist(string externalID);
+        Task<bool> IsExternalIDExistAsync(string externalID);
+
+        Task<PaymentRecord> GetPaymentRecordAsync(string externalID);
     }
 }

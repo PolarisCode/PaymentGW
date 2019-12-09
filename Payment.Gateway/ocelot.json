@@ -1,7 +1,7 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/Payments/",
+      "DownstreamPathTemplate": "/api/{all}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,7 +9,7 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/api/payments/"
+      "UpstreamPathTemplate": "/api/{all}"
     }
   ],
   "GlobalConfiguration": {

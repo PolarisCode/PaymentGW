@@ -22,7 +22,7 @@ namespace Payments.API.Processors
             _repository = repository;
         }
 
-        public async Task<PaymentResponse> Process(PaymentRequest request)
+        public async Task<PaymentResponse> ProcessAsync(PaymentRequest request)
         {
             if (await _paymentValidator.Validate(request))
             {
@@ -51,5 +51,30 @@ namespace Payments.API.Processors
                 throw new ApiException("Validation failed");
             }
         }
+
+        public async Task<PaymentDetails> ReceivePaymentAsync(string externalID)
+        {
+            PaymentRecord dbRecord = await _repository.GetPaymentRecordAsync(externalID);
+
+            var paymentDetails = new PaymentDetails()
+            {
+                BillingTransactionID = dbRecord.BillingID,
+                Success = dbRecord.BillingSuccess,
+                ErrorDescription = dbRecord.ErrorDescription,
+                ExpirtyYear = dbRecord.CardExpirationYear.ToString(),
+                ExpiryMonth = dbRecord.CardExpirationMonth.ToString(),
+                MaskedCardNumber = MaskCreditCardNumber(dbRecord.CardNumber)
+            };
+
+            return paymentDetails;
+        }
+
+        private string MaskCreditCardNumber(string cardNumber)
+        {
+            var last4digits = cardNumber.Substring(cardNumber.Length - 4);
+
+            return $"**** **** **** {last4digits}";
+        }
+
     }
 }

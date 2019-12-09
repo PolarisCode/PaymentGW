@@ -5,6 +5,8 @@ namespace Payments.API.Contracts
 {
     public interface IPaymentProcessor
     {
-        Task<PaymentResponse> Process(PaymentRequest request);
+        Task<PaymentResponse> ProcessAsync(PaymentRequest request);
+
+        Task<PaymentDetails> ReceivePaymentAsync(string externalID);
     }
 }
