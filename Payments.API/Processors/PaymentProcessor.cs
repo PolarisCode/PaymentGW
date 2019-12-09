@@ -44,7 +44,7 @@ namespace Payments.API.Processors
                     });
                 }
 
-                return response;
+                return await Task.FromResult(response);
             }
             else
             {
