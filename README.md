@@ -17,7 +17,7 @@ Solution consists of 4 projects:
   - Minimum Docker engine configuration: CPUs 2, Memory 2 GB, Swap: 1 GB, Disk image size: 15 GB
 
 
-## Application Running Guide
+## Application Installation Guide
 
 After having all required components, application can be run easily run by using next command in cmd:
 
@@ -28,8 +28,8 @@ docker-compose up
 Above command should be run in directory where docker-compose.yml file resides
 
 
-In running state 4 containers must be started: 
-- 3 for each project (simulator, api, gateway)
+In application running state 4 containers will be started: 
+- 1 for each project (simulator, api, gateway)
 - 1 for sql server (sql server 2017 express edition)
 
 It can be checked by command 
@@ -37,6 +37,8 @@ It can be checked by command
  ```
  docker ps
  ```
+ 
+Sample database will be generated automatically in sql server instance which running in container. Database will exist while sql instance container is alive (not removed by docker rm commamnd)
  
  ## Dev Guide
  
