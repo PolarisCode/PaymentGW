@@ -9,7 +9,7 @@ Solution consists of 3 projects:
 
 ## Requirements 
 
-* Windows 10 (Build 18362)
+* Windows 10 (Build 18362)/ Ubuntu Linux
 * Docker 2.1.0.5 
   - Disk "C" must be shared for logging purposes in Docker configuration
   - Minimum Docker engine configuration: CPUs 2, Memory 2 GB, Swap: 1 GB, Disk image size: 15 GB
