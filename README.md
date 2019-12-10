@@ -58,9 +58,9 @@ If Disk "C" is shared (see Requirements section) then C:\PaymentGW\Logs folder w
  
  - HTTP Method: POST
  - Content-Type: application/json
-  - Accept: \*/\*
+ - Accept: \*/\*
  
- http://localhost:5000/api/payments/ 
+ > http://localhost:5000/api/payments/ 
  
  ```json
 {
@@ -79,7 +79,7 @@ If Disk "C" is shared (see Requirements section) then C:\PaymentGW\Logs folder w
  - HTTP Method: GET
  - Accept: \*/\*
  
- http://localhost:5000/api/payments/250
+ > http://localhost:5000/api/payments/250
 
  
  ## Dev Guide
