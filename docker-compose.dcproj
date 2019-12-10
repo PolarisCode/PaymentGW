@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>6f7e9817-9c6b-45a6-ac03-7715090506b4</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/values</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/payments/1</DockerServiceUrl>
     <DockerServiceName>payments.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
