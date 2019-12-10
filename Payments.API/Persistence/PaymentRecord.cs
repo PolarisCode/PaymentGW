@@ -32,7 +32,7 @@ namespace Payments.API.Persistence
 
         public int CVV { get; set; }
 
-        [StringLength(16)]
+        [StringLength(100)]
         public string CardNumber { get; set; }
 
         public bool BillingSuccess { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Payments.API.Contracts;
+using Payments.API.Encryption;
 using Payments.API.Exceptions;
 using Payments.API.Models;
 using Payments.API.Persistence;
@@ -14,12 +15,15 @@ namespace Payments.API.Processors
         private readonly IBillingAdapter _billingAdapter;
         private readonly IPaymentValidator _paymentValidator;
         private readonly IPaymentRepository _repository;
+        private readonly IEncryptor _encryptor;
 
-        public PaymentProcessor(IBillingAdapter billingAdapter, IPaymentValidator paymentValidator, IPaymentRepository repository)
+        public PaymentProcessor(IBillingAdapter billingAdapter, IPaymentValidator paymentValidator, 
+            IPaymentRepository repository, IEncryptor encryptor)
         {
             _billingAdapter = billingAdapter;
             _paymentValidator = paymentValidator;
             _repository = repository;
+            _encryptor = encryptor;
         }
 
         /// <summary>
@@ -42,7 +46,7 @@ namespace Payments.API.Processors
                         Amount = request.Amount,
                         CardExpirationMonth = request.ExpiryMonth,
                         CardExpirationYear = request.ExpiryYear,
-                        CardNumber = request.CardNumber,
+                        CardNumber = _encryptor.Encrypt(request.CardNumber),
                         CurrencyCode = request.CurrencyCode,
                         CVV = request.Cvv,
                         BillingSuccess = response.Success
@@ -70,6 +74,9 @@ namespace Payments.API.Processors
 
             if (dbRecord != null)
             {
+                string decryptedCardNumber = _encryptor.Decrypt(dbRecord.CardNumber);
+
+                //PaymentDetails is just POCO class, no need for injection
                 paymentDetails = new PaymentDetails()
                 {
                     BillingTransactionID = dbRecord.BillingID,
@@ -77,7 +84,7 @@ namespace Payments.API.Processors
                     ErrorDescription = dbRecord.ErrorDescription,
                     ExpirtyYear = dbRecord.CardExpirationYear.ToString(),
                     ExpiryMonth = dbRecord.CardExpirationMonth.ToString(),
-                    MaskedCardNumber = MaskCreditCardNumber(dbRecord.CardNumber)
+                    MaskedCardNumber = MaskCreditCardNumber(decryptedCardNumber)
                 };
             }
 

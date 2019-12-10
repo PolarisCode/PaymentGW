@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Payments.API.Adapters;
 using Payments.API.Configuration;
 using Payments.API.Contracts;
+using Payments.API.Encryption;
 using Payments.API.Models;
 using Payments.API.Persistence;
 using Payments.API.Processors;
@@ -29,6 +30,8 @@ namespace Payments.API
             services.AddScoped<IPaymentRepository>(x => new PaymentRepository(configuration["ConnectionStrings:PaymentDB"]));
 
             services.AddSingleton<IApplicationConfiguration>(x => new ApplicationConfiguration(configuration));
+
+            services.AddScoped<IEncryptor, Encryptor>();
 
             return services;
         }
