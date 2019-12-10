@@ -37,7 +37,7 @@ It can be checked by command
  
  ## Dev Guide
  
- Application was implemented on Visaul Studio 2017 Community Edition with .NET Code SDK 2.2 installed
+ Application was implemented on Visual Studio 2017 Community Edition with .NET Code SDK 2.2 installed
  
  
  ## Technology Stack
