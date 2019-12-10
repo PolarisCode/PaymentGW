@@ -22,6 +22,11 @@ namespace Payments.API.Processors
             _repository = repository;
         }
 
+        /// <summary>
+        /// Process Payment Request by sending request to acquiring Bank
+        /// </summary>
+        /// <param name="request">Payment request to send</param>
+        /// <returns>Processed response from bank</returns>
         public async Task<PaymentResponse> ProcessAsync(PaymentRequest request)
         {
             if (await _paymentValidator.Validate(request))
@@ -52,6 +57,11 @@ namespace Payments.API.Processors
             }
         }
 
+        /// <summary>
+        /// Receive Payment Details based on externalID
+        /// </summary>
+        /// <param name="externalID">unique id of previously processed request</param>
+        /// <returns>Details of payment operation from Payment API storage</returns>
         public async Task<PaymentDetails> ReceivePaymentAsync(string externalID)
         {
             PaymentDetails paymentDetails = null;
