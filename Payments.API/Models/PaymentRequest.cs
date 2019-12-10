@@ -12,7 +12,12 @@ namespace Payments.API.Models
         public decimal Amount { get; set; }
         public string CurrencyCode { get; set; }
         public int ExpiryMonth { get; set; }
-        public int ExpiryYear  { get; set; }
+        public int ExpiryYear { get; set; }
         public int Cvv { get; set; }
+
+        public override string ToString()
+        {
+            return $"{ExternalID}, {CardNumber}, {Amount}, {CurrencyCode}, {ExpiryMonth}, {ExpiryYear}, {Cvv}";
+        }
     }
 }

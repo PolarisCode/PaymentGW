@@ -24,7 +24,7 @@ namespace Payments.API.Controllers
         {
             _paymentProcessor = processor;
             _logger = loggerFactory.CreateLogger("PaymentsController");
-           
+
         }
 
         [HttpPost]
@@ -33,7 +33,7 @@ namespace Payments.API.Controllers
         {
             try
             {
-                _logger.LogInformation(request.CardNumber);
+                _logger.LogInformation($"Payment Request Processing: {request.ToString()}");
 
                 PaymentResponse response = await _paymentProcessor.ProcessAsync(request);
 
@@ -50,14 +50,24 @@ namespace Payments.API.Controllers
         [Route("{externalId}")]
         public async Task<ActionResult> RetrievePaymentInformation(string externalId)
         {
-            PaymentDetails details = await _paymentProcessor.ReceivePaymentAsync(externalId);
+            _logger.LogInformation($"Retireview Payment Information: {externalId}");
 
-            if (details != null)
+            try
             {
-                return Ok(details);
+                PaymentDetails details = await _paymentProcessor.ReceivePaymentAsync(externalId);
+
+                if (details != null)
+                {
+                    return Ok(details);
+                }
+
+                return StatusCode(404, new ErrorResponse() { ErrorCode = "404", ErrorMessage = $"ExternalID '{externalId}' was not processed before." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
 
-            return StatusCode(404, new ErrorResponse() { ErrorCode = "404", ErrorMessage = $"ExternalID '{externalId}' was not processed before." });
         }
     }
 }
