@@ -1,10 +1,12 @@
 # Payment Gateway
-Example application that shows communication between PaymentGW API and Bank
+Example application that shows communication between Merchant, PaymentGW API and Bank
 
-Solution consists of 3 projects:
-- Payment.Gateway -  Central place for communication with API for external mechants
-- Payments.API - Application that makes actual business logic 
+Solution consists of 4 projects:
+
+- Payment.Gateway -  Gawateway for communication with downstream APIs (for now it is only Payments.API)
+- Payments.API - Restful API for handling Payments related requests 
 - Banking.Simulator - fake implementation of Acquiring Bank
+- Payments.API.Tests - sample project for showing testing techniques
 
 
 ## Requirements 
@@ -26,9 +28,10 @@ docker-compose up
 Above command should be run in directory where docker-compose.yml file resides
 
 
-In running state there should be 4 containers runnings:
+In running state 4 containers must be started: 
+- 3 for each project (simulator, api, gateway)
+- 1 for sql server (sql server 2017 express edition)
 
-3 for each project and one for sql server
 It can be checked by command 
  
  ```
@@ -37,7 +40,7 @@ It can be checked by command
  
  ## Dev Guide
  
- Application was implemented on Visual Studio 2017 Community Edition with .NET Code SDK 2.2 installed
+ Application was implemented on Visual Studio 2017 Community Edition with .NET Core SDK 2.2 installed
  
  
  ## Technology Stack
@@ -48,6 +51,7 @@ It can be checked by command
  * Ocelot - API Gateway
  * Log4net - logging library
  * MSTest - test library
+ * Moq - for mocking interfaces in unit test project
  * docker - containarization technology
  * docker-compose - orchestrator 
  
