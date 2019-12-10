@@ -13,8 +13,9 @@ Solution consists of 4 projects:
 
 * Windows 10 (Build 18362)/ Ubuntu Linux
 * Docker 2.1.0.5 
-  - Disk "C" must be shared for logging purposes in Docker configuration
+  - Docker must run in "Linux containers mode"
   - Minimum Docker engine configuration: CPUs 2, Memory 2 GB, Swap: 1 GB, Disk image size: 15 GB
+  - Disk "C" must be shared in Docker preferences cause it is required for mounting folder for application logs in host machine (preferably mounting device can be changed in docker-compose file)
 
 
 ## Application Installation Guide
@@ -39,6 +40,8 @@ It can be checked by command
  ```
  
 Sample database will be generated automatically in sql server instance which running in container. Database will exist while sql instance container is alive (not removed by docker rm commamnd)
+
+If Disk "C" is shared (see Requirements section) then C:\PaymentGW\Logs folder will be generated on first run on host machine (Windows 10)
  
  ## Dev Guide
  
