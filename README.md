@@ -16,3 +16,38 @@ Solution consists of 3 projects:
 
 
 ## Application Running Guide
+
+After having all required components, application can be run easily run by using next command in cmd:
+
+```
+docker-compose up
+```
+
+Above command should be run in directory where docker-compose.yml file resides
+
+
+In running state there should be 4 containers runnings:
+
+3 for each project and one for sql server
+It can be checked by command 
+ 
+ ```
+ docker ps
+ ```
+ 
+ ## Technology Stack
+ 
+ * .NET Core SDK 2.2 - runtime
+ * SQL.SErver 2017 Express - database engine
+ * EF Core - ORM Library
+ * Ocelot - API Gateway
+ * Log4net - logging library
+ * MSTest - test library
+ * docker - containarization technology
+ * docker-compose - orchestrator 
+ 
+ 
+ 
+ 
+ 
+ 
