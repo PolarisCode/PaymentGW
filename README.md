@@ -54,13 +54,18 @@ If Disk "C" is shared (see Requirements section) then C:\PaymentGW\Logs folder w
  
  Requests can be send by any REST client (POSTMAN or Insomnia):
  
- #### Payment Request
+ ### Payment Request
  
  - HTTP Method: POST
  - Content-Type: application/json
  - Accept: \*/\*
  
  > http://localhost:5000/api/payments/ 
+ 
+ * ExternalID - must be unique for each request
+ * CardNumber - string with length 16
+ * CurrencyCode: USD, EUR, CHF for any other code appropriate error text should be returned
+ 
  
  ```json
 {
@@ -74,7 +79,7 @@ If Disk "C" is shared (see Requirements section) then C:\PaymentGW\Logs folder w
 }
  ```
  
- #### Retrieve Payment Details
+ ### Retrieve Payment Details
  
  - HTTP Method: GET
  - Accept: \*/\*
