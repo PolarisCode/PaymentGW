@@ -50,6 +50,38 @@ Database can be accessed via SSMS on localhost, port 1433 with next credentials:
 
 If Disk "C" is shared (see Requirements section) then C:\PaymentGW\Logs folder will be generated on first run on host machine (Windows 10)
  
+ ## Usage
+ 
+ Requests can be send by any REST client (POSTMAN or Insomnia):
+ 
+ #### Payment Request
+ 
+ - HTTP Method: POST
+ - Content-Type: application/json
+  - Accept: \*/\*
+ 
+ http://localhost:5000/api/payments/ 
+ 
+ ```json
+{
+	"ExternalID": "250",
+	"CardNumber":"3243423445543456",
+	"Amount":"100",
+	"CurrencyCode":"EUR",
+	"ExpiryMonth": "10",
+	"ExpiryYear":"2020",
+	"CVV":123	
+}
+ ```
+ 
+ #### Retrieve Payment Details
+ 
+ - HTTP Method: GET
+ - Accept: \*/\*
+ 
+ http://localhost:5000/api/payments/250
+
+ 
  ## Dev Guide
  
  Application was implemented on Visual Studio 2017 Community Edition with .NET Core SDK 2.2 installed
