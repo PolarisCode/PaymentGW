@@ -33,9 +33,9 @@ namespace Payments.API.Processors
         /// <returns>Processed response from bank</returns>
         public async Task<PaymentResponse> ProcessAsync(PaymentRequest request)
         {
-            if (await _paymentValidator.Validate(request))
+            if (await _paymentValidator.ValidateAsync(request))
             {
-                PaymentResponse response = await _billingAdapter.SendRequest(request);
+                PaymentResponse response = await _billingAdapter.SendRequestAsync(request);
 
                 if (response != null)
                 {
@@ -97,6 +97,5 @@ namespace Payments.API.Processors
 
             return $"**** **** **** {last4digits}";
         }
-
     }
 }

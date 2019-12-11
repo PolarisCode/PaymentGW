@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Payments.API.Configuration;
 using Payments.API.Contracts;
@@ -20,8 +17,7 @@ namespace Payments.API.Adapters
             _configuration = configuration;
         }
 
-
-        public async Task<PaymentResponse> SendRequest(PaymentRequest request)
+        public async Task<PaymentResponse> SendRequestAsync(PaymentRequest request)
         {
             string jsonString = JsonConvert.SerializeObject(request);
 

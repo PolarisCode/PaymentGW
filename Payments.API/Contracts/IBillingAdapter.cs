@@ -5,6 +5,6 @@ namespace Payments.API.Contracts
 {
     public interface IBillingAdapter
     {
-        Task<PaymentResponse> SendRequest(PaymentRequest request);
+        Task<PaymentResponse> SendRequestAsync(PaymentRequest request);
     }
 }

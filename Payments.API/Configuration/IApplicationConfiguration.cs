@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace Payments.API.Configuration
 {
+    /// <summary>
+    /// Abstraction to hide real source of configuration
+    /// </summary>
     public interface IApplicationConfiguration
     {
         string BillingUrl { get; set; }

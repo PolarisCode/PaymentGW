@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Payments.API.Contracts;
+using Payments.API.Encryption;
 using Payments.API.Exceptions;
 using Payments.API.Models;
 using Payments.API.Persistence;
@@ -22,11 +23,13 @@ namespace Payments.API.Tests
         private readonly string _currencyCode = "EUR";
         private readonly int _cvv = 245;
         private readonly string _billingId = "111";
-        private readonly string _errorDesc = String.Empty;
+        private readonly string _errorDesc = string.Empty;
+        private readonly string _encryptedCardNumber = "encryptedValue";
 
         Mock<IBillingAdapter> billingAdapter;
         Mock<IPaymentValidator> paymentValidator;
         Mock<IPaymentRepository> paymentRepository;
+        Mock<IEncryptor> encryptor;
 
         PaymentRequest request;
 
@@ -36,6 +39,7 @@ namespace Payments.API.Tests
             billingAdapter = new Mock<IBillingAdapter>();
             paymentValidator = new Mock<IPaymentValidator>();
             paymentRepository = new Mock<IPaymentRepository>();
+            encryptor = new Mock<IEncryptor>();
 
             request = new PaymentRequest()
             {
@@ -53,7 +57,12 @@ namespace Payments.API.Tests
         public void ProcessAsync_RequestValid_Success()
         {
             // Arrange
-            PaymentProcessor processor = new PaymentProcessor(billingAdapter.Object, paymentValidator.Object, paymentRepository.Object);
+            var encryptedCardNumber = "encryptedValue";
+
+            encryptor.Setup(x => x.Encrypt(_cardNumber)).Returns(encryptedCardNumber);
+
+            PaymentProcessor processor = new PaymentProcessor(billingAdapter.Object, paymentValidator.Object,
+                paymentRepository.Object, encryptor.Object);
 
             var response = new PaymentResponse()
             {
@@ -62,8 +71,8 @@ namespace Payments.API.Tests
                 Success = true
             };
 
-            paymentValidator.Setup(x => x.Validate(request)).ReturnsAsync(true);
-            billingAdapter.Setup(x => x.SendRequest(request)).ReturnsAsync(response);
+            paymentValidator.Setup(x => x.ValidateAsync(request)).ReturnsAsync(true);
+            billingAdapter.Setup(x => x.SendRequestAsync(request)).ReturnsAsync(response);
 
             paymentRepository.Setup(x => x.SavePaymentRecordAsync(
                 It.Is<PaymentRecord>(
@@ -72,16 +81,18 @@ namespace Payments.API.Tests
                     p.BillingSuccess == true &&
                     p.CardExpirationMonth == _expiryMonth &&
                     p.CardExpirationYear == _expiryYear &&
-                    p.CardNumber == _cardNumber &&
+                    p.CardNumber == encryptedCardNumber &&
                     p.CurrencyCode == _currencyCode &&
-                    p.CVV == _cvv))).Returns(Task.CompletedTask);
+                    p.CVV == _cvv
+                    )))
+                    .Returns(Task.CompletedTask);
 
             // Act
             var paymentResponse = processor.ProcessAsync(request).Result;
 
             // Assert
-            paymentValidator.Verify(x => x.Validate(request), Times.Once);
-            billingAdapter.Verify(x => x.SendRequest(request), Times.Once);
+            paymentValidator.Verify(x => x.ValidateAsync(request), Times.Once);
+            billingAdapter.Verify(x => x.SendRequestAsync(request), Times.Once);
             paymentRepository.Verify(x => x.SavePaymentRecordAsync(It.IsAny<PaymentRecord>()), Times.Once);
 
             Assert.AreEqual(paymentResponse, response);
@@ -91,9 +102,12 @@ namespace Payments.API.Tests
         public void ProcessAsync_ValidationException_Failed()
         {
             // Arrange
-            PaymentProcessor processor = new PaymentProcessor(billingAdapter.Object, paymentValidator.Object, paymentRepository.Object);
+            encryptor.Setup(x => x.Decrypt(_cardNumber)).Returns(_encryptedCardNumber);
 
-            paymentValidator.Setup(x => x.Validate(request)).Throws(new CurrencyNotFoundException("Currency EUR not found"));
+            PaymentProcessor processor = new PaymentProcessor(billingAdapter.Object, paymentValidator.Object,
+                paymentRepository.Object, encryptor.Object);
+
+            paymentValidator.Setup(x => x.ValidateAsync(request)).Throws(new CurrencyNotFoundException("Currency EUR not found"));
 
             // Act ==> Assert
             try
@@ -110,17 +124,18 @@ namespace Payments.API.Tests
         public void ProcessAsync_NoBillingValue_ReturnNull()
         {
             // Arrange
-            PaymentProcessor processor = new PaymentProcessor(billingAdapter.Object, paymentValidator.Object, paymentRepository.Object);
+            PaymentProcessor processor = new PaymentProcessor(billingAdapter.Object, paymentValidator.Object,
+                paymentRepository.Object, encryptor.Object);
 
-            paymentValidator.Setup(x => x.Validate(request)).ReturnsAsync(true);
-            billingAdapter.Setup(x => x.SendRequest(request)).Returns(Task.FromResult<PaymentResponse>(null));
+            paymentValidator.Setup(x => x.ValidateAsync(request)).ReturnsAsync(true);
+            billingAdapter.Setup(x => x.SendRequestAsync(request)).Returns(Task.FromResult<PaymentResponse>(null));
 
             // Act
             var paymentResponse = processor.ProcessAsync(request).Result;
 
             // Assert
-            paymentValidator.Verify(x => x.Validate(request), Times.Once);
-            billingAdapter.Verify(x => x.SendRequest(request), Times.Once);
+            paymentValidator.Verify(x => x.ValidateAsync(request), Times.Once);
+            billingAdapter.Verify(x => x.SendRequestAsync(request), Times.Once);
 
             Assert.IsNull(paymentResponse);
         }
@@ -129,7 +144,10 @@ namespace Payments.API.Tests
         public void ReceivePaymentAsync_RequestValid_Success()
         {
             // Arrange
-            PaymentProcessor processor = new PaymentProcessor(billingAdapter.Object, paymentValidator.Object, paymentRepository.Object);
+            encryptor.Setup(x => x.Decrypt(_encryptedCardNumber)).Returns(_cardNumber);
+
+            PaymentProcessor processor = new PaymentProcessor(billingAdapter.Object, paymentValidator.Object,
+                paymentRepository.Object, encryptor.Object);
 
             paymentRepository.Setup(x => x.GetPaymentRecordAsync(_externalId)).ReturnsAsync(new PaymentRecord()
             {
@@ -138,7 +156,7 @@ namespace Payments.API.Tests
                 BillingSuccess = true,
                 CardExpirationMonth = _expiryMonth,
                 CardExpirationYear = _expiryYear,
-                CardNumber = _cardNumber,
+                CardNumber = _encryptedCardNumber,
                 CurrencyCode = _currencyCode,
                 CVV = _cvv
             });
@@ -148,6 +166,8 @@ namespace Payments.API.Tests
 
             // Assert
             paymentRepository.Verify(x => x.GetPaymentRecordAsync(_externalId), Times.Once);
+
+            encryptor.Verify(x => x.Decrypt(_encryptedCardNumber), Times.Once);
 
             Assert.AreEqual(_billingId, paymentDetails.BillingTransactionID);
             Assert.AreEqual(null, paymentDetails.ErrorDescription);
@@ -161,16 +181,17 @@ namespace Payments.API.Tests
         public void ReceivePaymentAsync_ExternalIdNotFound_NullReturned()
         {
             // Arrange
-            PaymentProcessor processor = new PaymentProcessor(billingAdapter.Object, paymentValidator.Object, paymentRepository.Object);
+            PaymentProcessor processor = new PaymentProcessor(billingAdapter.Object, paymentValidator.Object,
+                paymentRepository.Object, encryptor.Object);
 
-            paymentRepository.Setup(x=>x.GetPaymentRecordAsync("123")).Returns(Task.FromResult<PaymentRecord>(null));
+            paymentRepository.Setup(x => x.GetPaymentRecordAsync("123")).Returns(Task.FromResult<PaymentRecord>(null));
 
             // Act
             var paymentDetails = processor.ReceivePaymentAsync(_externalId).Result;
 
             // Assert
             paymentRepository.Verify(x => x.GetPaymentRecordAsync("123"), Times.Once);
-           
+
             Assert.IsNull(paymentDetails);
         }
     }

@@ -5,6 +5,6 @@ namespace Payments.API.Contracts
 {
     public interface IPaymentValidator
     {
-        Task<bool> Validate(PaymentRequest request);
+        Task<bool> ValidateAsync(PaymentRequest request);
     }
 }

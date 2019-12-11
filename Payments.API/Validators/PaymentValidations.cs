@@ -17,7 +17,7 @@ namespace Payments.API.Validators
             _repository = repository;
         }
 
-        public async Task<bool> Validate(PaymentRequest request)
+        public async Task<bool> ValidateAsync(PaymentRequest request)
         {
             await new CurrencyValidator().IsSatisfied(request);
             await new CardNumberValidator().IsSatisfied(request);
