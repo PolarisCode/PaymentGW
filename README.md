@@ -21,6 +21,7 @@ Solution consists of 4 projects:
 
 * TCP ports 5000, 5001, 5002 are used by application. If these ports will be busy then application will fail to start. 
 * Standard port 1433 is used for SqlServer. Sql container can have port conflicts if other instance of sql server is already running on host machine on the same port.
+* ATTENTION: Volume path in docker-compose file was indicated in Windows style, it means this mount command can fail in Linux based host system, then path should be changed to linux style
 
 
 ## Application Installation Guide
