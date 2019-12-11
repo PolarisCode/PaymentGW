@@ -33,6 +33,7 @@ docker-compose up
 
 Above command should be run in directory where docker-compose.yml file resides
 
+Take into consideration during running "docker-compose" docker should download .net core runtime , sdk (for building app on the fly) and sql server. Overall process can take 3-4 minutes on normal internet connection.
 
 4 containers will be started: 
 - 1 for each project (simulator, api, gateway)
